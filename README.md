@@ -7,6 +7,6 @@
 ## Control Hub Ports
 | Device | Name in code |
 | ------------- | ------------- |
-| Left Motor | left-motor  |
-| Right Motor  | right-motor  |
-| Webcam  | webcam  |
+| Left Motor | `left-motor`  |
+| Right Motor  | `right-motor`  |
+| Webcam  | `webcam`  |
