@@ -1,6 +1,6 @@
 # FTC Webcam and Drive
 ## Setup
-1. Plug a webcam into the **USB2.0** port on the control hub. 
+1. Plug a webcam into the **USB 2.0** port on the control hub. 
 2. Declare names of each piece of hardware. See control hub ports. 
 3. Run the `Webcam Streaming with Controls`
 
