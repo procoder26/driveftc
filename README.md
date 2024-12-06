@@ -1,12 +1,11 @@
 # FTC Webcam and Drive
 ## Setup
-1. Plug a webcam into the **USB 2.0** port on the control hub. 
-2. Declare names of each piece of hardware. See control hub ports. 
-3. Run the `Webcam Streaming with Controls`
+1. Declare names of each piece of hardware. See control hub ports. 
+2. Run the `Drive`
 
 ## Control Hub Ports
 | Device | Name in code |
 | ------------- | ------------- |
 | Left Motor | `left-motor`  |
 | Right Motor  | `right-motor`  |
-| Webcam  | `webcam`  |
+# driveftc
