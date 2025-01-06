@@ -9,4 +9,6 @@
 | Left Motor  | `left-motor`  |
 | Right Motor | `right-motor` |
 | Claw Servo  | `claw`        |
+| Vetical Claw | `vertical-claw`|Servo  | `claw`        |
+
 

@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class drive extends LinearOpMode {
 
     private DcMotor leftMotor, rightMotor;
-    private Servo claw;
+    private Servo claw, clawVertical;
 
     @Override
     public void runOpMode() {
@@ -18,6 +18,9 @@ public class drive extends LinearOpMode {
         leftMotor = hardwareMap.get(DcMotor.class, "left_motor");
         rightMotor = hardwareMap.get(DcMotor.class, "right_motor");
         claw = hardwareMap.get(Servo.class, "claw");
+        clawVertical = hardwareMap.get(Servo.class, "vertical_claw");
+
+
 
 
         // Set motor directions if needed (e.g., if one side is reversed)
@@ -31,8 +34,7 @@ public class drive extends LinearOpMode {
 
         // Adjust the turn sensitivity
         final double TURN_SENSITIVITY = 0.5; // Reduce turning sensitivity
-        final double closedness = 0; //
-
+        double clawVerticalPosition = 0;
         while (opModeIsActive()) {
             // Read joystick inputs
             double forwardBackward = -gamepad1.left_stick_y; // Forward/Backward
@@ -45,12 +47,19 @@ public class drive extends LinearOpMode {
             // Apply power to motors
             leftMotor.setPower(leftPower);
             rightMotor.setPower(rightPower);
+            clawVertical.setPosition(clawVerticalPosition);
 
-            if (gamepad2.b) {
-                claw.setPosition(1);
+            if (gamepad1.dpad_up) {
+                clawVerticalPosition +=0.1;
             }
-            if (gamepad2.x){
-                claw.setPosition(closedness);
+            if (gamepad1.dpad_down) {
+                clawVerticalPosition -=0.1;
+            }
+            if (gamepad1.dpad_left) {
+                claw.setPosition(0);
+            }
+            if (gamepad1.dpad_right) {
+                claw.setPosition(1);
             }
             // Add telemetry for motor powers
             telemetry.addData("Left Motor Power", leftPower);
