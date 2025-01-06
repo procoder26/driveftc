@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Ball Drive")
 
-public class drive extends LinearOpMode {
+public class doubleDrive extends LinearOpMode {
 
     private DcMotor leftMotor, rightMotor;
     private Servo claw, clawVertical;
@@ -49,16 +49,16 @@ public class drive extends LinearOpMode {
             rightMotor.setPower(rightPower);
             clawVertical.setPosition(clawVerticalPosition);
 
-            if (gamepad1.dpad_up) {
+            if (gamepad2.dpad_up) {
                 clawVerticalPosition +=0.1;
             }
-            if (gamepad1.dpad_down) {
+            if (gamepad2.dpad_down) {
                 clawVerticalPosition -=0.1;
             }
-            if (gamepad1.dpad_left) {
+            if (gamepad2.dpad_left) {
                 claw.setPosition(0);
             }
-            if (gamepad1.dpad_right) {
+            if (gamepad2.dpad_right) {
                 claw.setPosition(1);
             }
             // Add telemetry for motor powers
