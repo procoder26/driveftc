@@ -4,11 +4,11 @@
 2. Run the `Ball Drive`
 
 ## Control Hub Ports
-| Device      | Name in code  |
-|-------------|---------------|
-| Left Motor  | `left-motor`  |
-| Right Motor | `right-motor` |
-| Claw Servo  | `claw`        |
-| Vetical Claw | `vertical-claw`|Servo  | `claw`        |
+| Device        | Name in code  |
+|---------------|---------------|
+| Left Motor    | `left-motor`  |
+| Right Motor   | `right-motor` |
+| Claw Servo    | `claw`        |
+| Vertical Claw | `vertical-claw`|
 
 
