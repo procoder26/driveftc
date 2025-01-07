@@ -6,9 +6,9 @@
 ## Control Hub Ports
 | Device        | Name in code  |
 |---------------|---------------|
-| Left Motor    | `left-motor`  |
-| Right Motor   | `right-motor` |
+| Left Motor    | `left_motor`  |
+| Right Motor   | `right_motor` |
 | Claw Servo    | `claw`        |
-| Vertical Claw | `vertical-claw`|
+| Vertical Claw | `vertical_claw`|
 
 
