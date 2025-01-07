@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Ball Drive")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Double Ball Drive")
 
 public class doubleDrive extends LinearOpMode {
 
