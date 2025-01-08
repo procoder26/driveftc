@@ -10,7 +10,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class singleDrive extends LinearOpMode {
 
     private DcMotor leftMotor, rightMotor;
-    private Servo claw, clawVertical;
+    public Servo claw, clawVertical;
+    double clawVerticalPosition = 0;
 
     @Override
     public void runOpMode() {
@@ -19,9 +20,6 @@ public class singleDrive extends LinearOpMode {
         rightMotor = hardwareMap.get(DcMotor.class, "right_motor");
         claw = hardwareMap.get(Servo.class, "claw");
         clawVertical = hardwareMap.get(Servo.class, "vertical_claw");
-
-
-
 
         // Set motor directions if needed (e.g., if one side is reversed)
         leftMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -34,26 +32,32 @@ public class singleDrive extends LinearOpMode {
 
         // Adjust the turn sensitivity
         final double TURN_SENSITIVITY = 0.5; // Reduce turning sensitivity
-        double clawVerticalPosition = 0;
+
         while (opModeIsActive()) {
             // Read joystick inputs
             double forwardBackward = -gamepad1.left_stick_y; // Forward/Backward
             double turn = gamepad1.right_stick_x * TURN_SENSITIVITY; // Scale turning input
 
             // Calculate motor power
-            double leftPower = forwardBackward + turn;
-            double rightPower = forwardBackward - turn;
+            double leftPower = forwardBackward * 0.5 + turn;
+            double rightPower = forwardBackward * 0.5 - turn;
 
             // Apply power to motors
             leftMotor.setPower(leftPower);
             rightMotor.setPower(rightPower);
             clawVertical.setPosition(clawVerticalPosition);
 
-            if (gamepad1.dpad_up) {
-                clawVerticalPosition +=0.1;
-            }
             if (gamepad1.dpad_down) {
-                clawVerticalPosition -=0.1;
+                if (clawVerticalPosition < 1) {
+                    clawVerticalPosition += 0.1;
+                }
+
+            }
+            if (gamepad1.dpad_up) {
+                if (clawVerticalPosition > 0) {
+                    clawVerticalPosition -= 0.1;
+                }
+
             }
             if (gamepad1.dpad_left) {
                 claw.setPosition(0);
@@ -65,6 +69,7 @@ public class singleDrive extends LinearOpMode {
             telemetry.addData("Left Motor Power", leftPower);
             telemetry.addData("Right Motor Power", rightPower);
             telemetry.addData("Turn Sensitivity", TURN_SENSITIVITY);
+            telemetry.addData("Vertical Pos", clawVerticalPosition);
             telemetry.update();
 
             sleep(50); // Small delay to avoid overwhelming the control loop

@@ -21,8 +21,6 @@ public class doubleDrive extends LinearOpMode {
         clawVertical = hardwareMap.get(Servo.class, "vertical_claw");
 
 
-
-
         // Set motor directions if needed (e.g., if one side is reversed)
         leftMotor.setDirection(DcMotor.Direction.FORWARD);
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -49,11 +47,17 @@ public class doubleDrive extends LinearOpMode {
             rightMotor.setPower(rightPower);
             clawVertical.setPosition(clawVerticalPosition);
 
-            if (gamepad2.dpad_up) {
-                clawVerticalPosition +=0.1;
-            }
             if (gamepad2.dpad_down) {
-                clawVerticalPosition -=0.1;
+                if (clawVerticalPosition < 1) {
+                    clawVerticalPosition += 0.1;
+                }
+
+            }
+            if (gamepad2.dpad_up) {
+                if (clawVerticalPosition > 0) {
+                    clawVerticalPosition -= 0.1;
+                }
+
             }
             if (gamepad2.dpad_left) {
                 claw.setPosition(0);
@@ -65,6 +69,7 @@ public class doubleDrive extends LinearOpMode {
             telemetry.addData("Left Motor Power", leftPower);
             telemetry.addData("Right Motor Power", rightPower);
             telemetry.addData("Turn Sensitivity", TURN_SENSITIVITY);
+            telemetry.addData("Vertical Pos", clawVerticalPosition);
             telemetry.update();
 
             sleep(50); // Small delay to avoid overwhelming the control loop
