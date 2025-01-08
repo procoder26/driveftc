@@ -32,7 +32,6 @@ public class doubleDrive extends LinearOpMode {
 
         // Adjust the turn sensitivity
         final double TURN_SENSITIVITY = 0.5; // Reduce turning sensitivity
-        double clawVerticalPosition = 0;
         while (opModeIsActive()) {
             // Read joystick inputs
             double forwardBackward = -gamepad1.left_stick_y; // Forward/Backward
@@ -45,31 +44,13 @@ public class doubleDrive extends LinearOpMode {
             // Apply power to motors
             leftMotor.setPower(leftPower);
             rightMotor.setPower(rightPower);
-            clawVertical.setPosition(clawVerticalPosition);
+            clawVertical.setPosition(gamepad2.right_stick_y);
+            claw.setPosition(gamepad2.left_stick_y);
 
-            if (gamepad2.dpad_down) {
-                if (clawVerticalPosition < 1) {
-                    clawVerticalPosition += 0.1;
-                }
-
-            }
-            if (gamepad2.dpad_up) {
-                if (clawVerticalPosition > 0) {
-                    clawVerticalPosition -= 0.1;
-                }
-
-            }
-            if (gamepad2.dpad_left) {
-                claw.setPosition(0);
-            }
-            if (gamepad2.dpad_right) {
-                claw.setPosition(1);
-            }
             // Add telemetry for motor powers
             telemetry.addData("Left Motor Power", leftPower);
             telemetry.addData("Right Motor Power", rightPower);
             telemetry.addData("Turn Sensitivity", TURN_SENSITIVITY);
-            telemetry.addData("Vertical Pos", clawVerticalPosition);
             telemetry.update();
 
             sleep(50); // Small delay to avoid overwhelming the control loop
