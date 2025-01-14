@@ -21,7 +21,7 @@ public class singleDrive extends LinearOpMode {
         claw = hardwareMap.get(Servo.class, "claw");
         clawVertical = hardwareMap.get(Servo.class, "vertical_claw");
 
-        // Set motor directions if needed (e.g., if one side is reversed)
+        // Set motor di0  b rections if needed (e.g., if one side is reversed)
         leftMotor.setDirection(DcMotor.Direction.FORWARD);
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
@@ -49,13 +49,13 @@ public class singleDrive extends LinearOpMode {
 
             if (gamepad1.dpad_down) {
                 if (clawVerticalPosition < 1) {
-                    clawVerticalPosition += 0.1;
+                    clawVerticalPosition += 0.05;
                 }
 
             }
             if (gamepad1.dpad_up) {
                 if (clawVerticalPosition > 0) {
-                    clawVerticalPosition -= 0.1;
+                    clawVerticalPosition -= 0.05;
                 }
 
             }
@@ -63,7 +63,7 @@ public class singleDrive extends LinearOpMode {
                 claw.setPosition(0);
             }
             if (gamepad1.dpad_right) {
-                claw.setPosition(1);
+                claw.setPosition(0.8);
             }
             // Add telemetry for motor powers
             telemetry.addData("Left Motor Power", leftPower);
